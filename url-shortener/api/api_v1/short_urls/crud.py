@@ -29,6 +29,12 @@ class ShortUrlsStorage(BaseModel):
         self.slug_to_short_url[short_url.slug] = short_url
         return short_url
 
+    def delete_by_slug(self, slug: str) -> None:
+        self.slug_to_short_url.pop(slug, None)
+
+    def delete(self, short_url: ShortUrl) -> None:
+        self.delete_by_slug(slug=short_url.slug)
+
 
 storage = ShortUrlsStorage()
 
