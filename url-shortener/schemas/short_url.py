@@ -59,3 +59,4 @@ class ShortUrl(ShortUrlBase):
     """
 
     slug: str
+    visits: int = 42
