@@ -1,3 +1,5 @@
+import logging
+
 from fastapi import (
     FastAPI,
     Request,
@@ -5,6 +7,12 @@ from fastapi import (
 
 from api import router as api_router
 from api.redirect_views import router as redirect_views
+from core import config
+
+logging.basicConfig(
+    level=config.LOG_LEVEL,
+    format=config.LOG_FORMAT,
+)
 
 app = FastAPI(
     title="URL Shortener",
