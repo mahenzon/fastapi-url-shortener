@@ -61,7 +61,7 @@ class ShortUrlsStorage(BaseModel):
             **short_url_in.model_dump(),
         )
         self.slug_to_short_url[short_url.slug] = short_url
-        self.save_state()
+        log.info("Created short url %s", short_url)
         return short_url
 
     def delete_by_slug(self, slug: str) -> None:
