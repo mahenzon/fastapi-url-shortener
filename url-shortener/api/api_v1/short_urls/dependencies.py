@@ -51,12 +51,16 @@ def save_storage_state(
         background_tasks.add_task(storage.save_state)
 
 
-def api_token_required(
+def api_token_required_for_unsafe_methods(
+    request: Request,
     api_token: Annotated[
         str,
         Query(),
-    ],
+    ] = "",
 ):
+    if request.method not in UNSAFE_METHODS:
+        return
+
     if api_token not in API_TOKENS:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
