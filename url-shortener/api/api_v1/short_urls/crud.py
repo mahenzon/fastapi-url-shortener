@@ -88,7 +88,10 @@ class ShortUrlsStorage(BaseModel):
         return short_url
 
     def delete_by_slug(self, slug: str) -> None:
-        self.slug_to_short_url.pop(slug, None)
+        redis.hdel(
+            config.REDIS_SHORT_URLS_HASH_NAME,
+            slug,
+        )
 
     def delete(self, short_url: ShortUrl) -> None:
         self.delete_by_slug(slug=short_url.slug)
