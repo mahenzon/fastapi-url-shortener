@@ -60,18 +60,6 @@ def prefetch_short_url(
     )
 
 
-def save_storage_state(
-    request: Request,
-    background_tasks: BackgroundTasks,
-):
-    # сначала код для выполнения до входа внутрь view функции
-    yield
-    # после yield код для выполнения после покидания view функции
-    if request.method in UNSAFE_METHODS:
-        log.info("Add background task to save storage")
-        background_tasks.add_task(storage.save_state)
-
-
 def validate_api_token(
     api_token: HTTPAuthorizationCredentials,
 ):
