@@ -126,12 +126,14 @@ source = { virtual = "." }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
     { name = "redis", extra = ["hiredis"] },
+    { name = "typer" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.10" },
     { name = "redis", extras = ["hiredis"], specifier = ">=5.2.1" },
+    { name = "typer", specifier = ">=0.15.2" },
 ]
 
 [[package]]
