@@ -1,3 +1,5 @@
+__all__ = ("app",)
+
 from typing import Annotated
 
 import typer
