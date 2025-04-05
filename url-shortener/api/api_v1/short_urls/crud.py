@@ -89,7 +89,7 @@ class ShortUrlsStorage(BaseModel):
         self,
         short_url: ShortUrl,
         short_url_in: ShortUrlPartialUpdate,
-    ):
+    ) -> ShortUrl:
         for field_name, value in short_url_in.model_dump(exclude_unset=True).items():
             setattr(short_url, field_name, value)
         self.save_short_url(short_url)
