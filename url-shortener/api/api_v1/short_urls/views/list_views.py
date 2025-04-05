@@ -49,6 +49,18 @@ def read_short_urls_list() -> list[ShortUrl]:
     "/",
     response_model=ShortUrlRead,
     status_code=status.HTTP_201_CREATED,
+    responses={
+        status.HTTP_409_CONFLICT: {
+            "description": "A short url with such slug already exists.",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "detail": "Short URL with slug='name' already exists.",
+                    },
+                },
+            },
+        },
+    },
 )
 def create_short_url(
     short_url_create: ShortUrlCreate,
