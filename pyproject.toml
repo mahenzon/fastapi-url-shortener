@@ -79,6 +79,8 @@ select = [
     "FAST",  # FastAPI (FAST)
     "I",  # isort (I)
     "F",  # Pyflakes (F)
+    "COM",  # flake8-commas (COM)
+    "Q",  # flake8-quotes (Q)
 ]
 ignore = [
 ]
