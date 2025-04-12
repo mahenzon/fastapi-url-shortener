@@ -17,8 +17,69 @@ dev = [
 ]
 
 
+# mypy settings
+
 [tool.mypy]
 strict = true
 plugins = [
     "pydantic.mypy",
 ]
+
+
+# ruff settings
+
+[tool.ruff]
+required-version = ">=0.11.5"
+
+src = [
+    "url-shortener",
+]
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+    ".venv",
+]
+
+# Same as Black.
+line-length = 88
+indent-width = 4
+
+# Assume Python 3.13
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "FAST",
+]
+ignore = [
+]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
