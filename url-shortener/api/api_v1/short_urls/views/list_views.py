@@ -1,10 +1,11 @@
 from fastapi import (
     APIRouter,
-    status,
     Depends,
     HTTPException,
+    status,
 )
 
+from api.api_v1.short_urls.crud import ShortUrlAlreadyExists, storage
 from api.api_v1.short_urls.dependencies import (
     api_token_or_user_basic_auth_required_for_unsafe_methods,
 )
@@ -13,8 +14,6 @@ from schemas.short_url import (
     ShortUrlCreate,
     ShortUrlRead,
 )
-
-from api.api_v1.short_urls.crud import storage, ShortUrlAlreadyExists
 
 router = APIRouter(
     prefix="/short-urls",
