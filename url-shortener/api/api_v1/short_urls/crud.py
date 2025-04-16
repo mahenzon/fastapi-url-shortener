@@ -38,9 +38,7 @@ class ShortUrlBaseError(Exception):
     """
 
 
-# Ха-ха, тут забыл указать суффикс Error.
-# Ну и ладно, он тут не очень-то и нужен.
-class ShortUrlAlreadyExists(ShortUrlBaseError):
+class ShortUrlAlreadyExistsError(ShortUrlBaseError):
     """
     Raised on short url creation if such slug already exists.
     """
@@ -92,7 +90,7 @@ class ShortUrlsStorage(BaseModel):
         if not self.exists(short_url_in.slug):
             return self.create(short_url_in)
 
-        raise ShortUrlAlreadyExists(short_url_in.slug)
+        raise ShortUrlAlreadyExistsError(short_url_in.slug)
 
     def delete_by_slug(self, slug: str) -> None:
         redis.hdel(
