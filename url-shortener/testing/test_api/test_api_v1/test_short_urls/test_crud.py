@@ -4,6 +4,8 @@ from os import getenv
 from typing import ClassVar
 from unittest import TestCase
 
+import pytest
+
 from api.api_v1.short_urls.crud import storage
 from schemas.short_url import (
     ShortUrl,
@@ -13,8 +15,8 @@ from schemas.short_url import (
 )
 
 if getenv("TESTING") != "1":
-    raise OSError(  # noqa: TRY003
-        "Environment is not ready for testing",  # noqa: EM101
+    pytest.exit(
+        "Environment is not ready for testing",
     )
 
 
