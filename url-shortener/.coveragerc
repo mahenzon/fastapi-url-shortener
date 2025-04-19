@@ -1,0 +1,37 @@
+[run]
+branch = on
+command_line = -m unittest
+
+omit =
+    # omit stuff.py
+    stuff.py
+
+[report]
+; Don’t report files that have no executable code (such as __init__.py files).
+skip_empty = on
+
+; Regexes for lines to exclude from consideration
+exclude_also =
+    ; Don't complain about missing debug-only code:
+    def __repr__
+    if self\.debug
+
+    ; Don't complain if tests don't hit defensive assertion code:
+    raise AssertionError
+    raise NotImplementedError
+
+    ; Don't complain if non-runnable code isn't run:
+    if 0:
+    if __name__ == .__main__.:
+
+    ; Don't complain about abstract methods, they aren't run:
+    @(abc\.)?abstractmethod
+
+    ; Don't complain about pre-run test:
+    if getenv\(.TESTING.\) != .1.:
+
+
+ignore_errors = True
+
+[html]
+; directory = html_report
