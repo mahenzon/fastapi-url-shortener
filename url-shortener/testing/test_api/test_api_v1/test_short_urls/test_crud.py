@@ -1,6 +1,3 @@
-import random
-import string
-from collections.abc import Generator
 from typing import ClassVar
 from unittest import TestCase
 
@@ -13,27 +10,7 @@ from schemas.short_url import (
     ShortUrlPartialUpdate,
     ShortUrlUpdate,
 )
-
-
-def create_short_url() -> ShortUrl:
-    short_url_in = ShortUrlCreate(
-        slug="".join(
-            random.choices(
-                string.ascii_letters,
-                k=8,
-            ),
-        ),
-        description="A short url",
-        target_url="https://example.com",
-    )
-    return storage.create(short_url_in)
-
-
-@pytest.fixture()
-def short_url() -> Generator[ShortUrl]:
-    short_url = create_short_url()
-    yield short_url
-    storage.delete(short_url)
+from testing.conftest import create_short_url
 
 
 class ShortUrlsStorageUpdateTestCase(TestCase):
