@@ -10,12 +10,12 @@ from schemas.short_url import (
     ShortUrlPartialUpdate,
     ShortUrlUpdate,
 )
-from testing.conftest import create_short_url
+from testing.conftest import create_short_url_random_slug
 
 
 class ShortUrlsStorageUpdateTestCase(TestCase):
     def setUp(self) -> None:
-        self.short_url = create_short_url()
+        self.short_url = create_short_url_random_slug()
 
     def tearDown(self) -> None:
         storage.delete(self.short_url)
@@ -64,7 +64,9 @@ class ShortUrlsStorageGetShortUrlsTestCase(TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        cls.short_urls = [create_short_url() for _ in range(cls.SHORT_URLS_COUNT)]
+        cls.short_urls = [
+            create_short_url_random_slug() for _ in range(cls.SHORT_URLS_COUNT)
+        ]
 
     @classmethod
     def tearDownClass(cls) -> None:

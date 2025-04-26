@@ -5,16 +5,8 @@ from fastapi.testclient import TestClient
 
 from api.api_v1.short_urls.crud import storage
 from main import app
-from schemas.short_url import ShortUrl, ShortUrlCreate
-
-
-def create_short_url(slug: str) -> ShortUrl:
-    short_url_in = ShortUrlCreate(
-        slug=slug,
-        description="A short url",
-        target_url="https://example.com",
-    )
-    return storage.create(short_url_in)
+from schemas.short_url import ShortUrl
+from testing.conftest import create_short_url
 
 
 @pytest.fixture(
