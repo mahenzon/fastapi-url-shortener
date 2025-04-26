@@ -50,8 +50,12 @@ def create_short_url(
     return storage.create(short_url_in)
 
 
-def create_short_url_random_slug() -> ShortUrl:
-    short_url_in = build_short_url_create_random_slug()
+def create_short_url_random_slug(
+    description: str = "A short url",
+) -> ShortUrl:
+    short_url_in = build_short_url_create_random_slug(
+        description=description,
+    )
     return storage.create(short_url_in)
 
 
