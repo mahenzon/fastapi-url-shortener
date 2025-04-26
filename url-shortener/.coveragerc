@@ -1,6 +1,6 @@
 [run]
 branch = on
-command_line = -m unittest
+command_line = -m pytest
 
 omit =
     # omit stuff.py
