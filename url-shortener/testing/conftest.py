@@ -4,6 +4,7 @@ from collections.abc import Generator
 from os import getenv
 
 import pytest
+from pydantic import AnyHttpUrl
 
 from api.api_v1.short_urls.crud import storage
 from schemas.short_url import ShortUrl, ShortUrlCreate
@@ -17,16 +18,18 @@ if getenv("TESTING") != "1":
 def build_short_url_create(
     slug: str,
     description: str = "A short url",
+    target_url: str | AnyHttpUrl = "https://example.com",
 ) -> ShortUrlCreate:
     return ShortUrlCreate(
         slug=slug,
         description=description,
-        target_url="https://example.com",
+        target_url=target_url,
     )
 
 
 def build_short_url_create_random_slug(
     description: str = "A short url",
+    target_url: str | AnyHttpUrl = "https://example.com",
 ) -> ShortUrlCreate:
     return build_short_url_create(
         slug="".join(
@@ -36,25 +39,30 @@ def build_short_url_create_random_slug(
             ),
         ),
         description=description,
+        target_url=target_url,
     )
 
 
 def create_short_url(
     slug: str,
     description: str = "A short url",
+    target_url: str | AnyHttpUrl = "https://example.com",
 ) -> ShortUrl:
     short_url_in = build_short_url_create(
         slug=slug,
         description=description,
+        target_url=target_url,
     )
     return storage.create(short_url_in)
 
 
 def create_short_url_random_slug(
     description: str = "A short url",
+    target_url: str | AnyHttpUrl = "https://example.com",
 ) -> ShortUrl:
     short_url_in = build_short_url_create_random_slug(
         description=description,
+        target_url=target_url,
     )
     return storage.create(short_url_in)
 
