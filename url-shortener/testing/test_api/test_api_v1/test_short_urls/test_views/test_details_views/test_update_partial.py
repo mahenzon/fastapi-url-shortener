@@ -10,6 +10,8 @@ from main import app
 from schemas.short_url import DESCRIPTION_MAX_LENGTH, ShortUrl
 from testing.conftest import create_short_url_random_slug
 
+pytestmark = pytest.mark.apitest
+
 
 class TestUpdatePartial:
 
