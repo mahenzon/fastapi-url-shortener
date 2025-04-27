@@ -11,6 +11,8 @@ from main import app
 from schemas.short_url import ShortUrl, ShortUrlCreate
 from testing.conftest import build_short_url_create_random_slug
 
+pytestmark = pytest.mark.apitest
+
 
 def test_create_short_url(auth_client: TestClient) -> None:
     url = app.url_path_for("create_short_url")

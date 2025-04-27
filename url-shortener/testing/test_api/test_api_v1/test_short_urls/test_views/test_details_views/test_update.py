@@ -12,6 +12,7 @@ from schemas.short_url import DESCRIPTION_MAX_LENGTH, ShortUrl, ShortUrlUpdate
 from testing.conftest import create_short_url_random_slug
 
 
+@pytest.mark.apitest
 class TestUpdate:
 
     @pytest.fixture()

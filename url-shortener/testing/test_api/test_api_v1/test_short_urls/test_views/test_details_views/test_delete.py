@@ -21,6 +21,7 @@ def short_url(request: SubRequest) -> ShortUrl:
     return create_short_url(request.param)
 
 
+@pytest.mark.apitest
 def test_delete(
     short_url: ShortUrl,
     auth_client: TestClient,
