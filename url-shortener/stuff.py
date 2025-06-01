@@ -21,7 +21,6 @@ def main() -> None:
     b = 2
     c = add(a, b)
     print(c)
-    print("type c:", type(c))
     reveal_type(c)
     print(redis.ping())
     # print(redis.pong())
