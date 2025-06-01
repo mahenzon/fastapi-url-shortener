@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
       - master
+    paths:
+      - "url-shortener/**"
 
 jobs:
   lint:
