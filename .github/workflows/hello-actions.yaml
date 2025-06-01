@@ -9,3 +9,9 @@ jobs:
     steps:
       - name: My first step in GH Action
         run: echo "Hello action on ${{ github.event_name }}"
+
+      - name: Second GH Action by ${{ github.actor }}
+        run: echo "Hello action in ${{ github.repository }} ref - ${{ github.ref }}"
+
+      - name: This GH Action is running on ${{ runner.os }}
+        run: echo "Action job status ${{ job.status }}"
