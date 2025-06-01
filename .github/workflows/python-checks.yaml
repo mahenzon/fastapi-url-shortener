@@ -11,8 +11,16 @@ on:
       - "url-shortener/**"
 
 jobs:
-  lint:
+  run-black:
     runs-on: ubuntu-latest
     steps:
-      - name: Placeholder GH Action step
-        run: echo "Hello action!"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: '.python-version'
+      - name: Install Black
+        run: |
+          python -m pip install --upgrade pip
+          pip install "black==25.1.0"
+      - name: Black ⬛
+        run: black ./
