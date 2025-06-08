@@ -58,7 +58,7 @@ class ShortUrlsStorage(BaseModel):
             ShortUrl.model_validate_json(value)
             for value in cast(
                 Iterable[str],
-                redis.hvals(name=config.REDIS_SHORT_URLS_HASH_NAME)
+                redis.hvals(name=config.REDIS_SHORT_URLS_HASH_NAME),
             )
         ]
 
