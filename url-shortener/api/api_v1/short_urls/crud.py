@@ -57,7 +57,7 @@ class ShortUrlsStorage(BaseModel):
         return [
             ShortUrl.model_validate_json(value)
             for value in cast(
-                Iterable[str], redis.hvals(name=config.REDIS_SHORT_URLS_HASH_NAME)
+                Iterable[str], redis.hvals(name=config.REDIS_SHORT_URLS_HASH_NAME),
             )
         ]
 
@@ -74,10 +74,7 @@ class ShortUrlsStorage(BaseModel):
     def exists(self, slug: str) -> bool:
         return cast(
             bool,
-            redis.hexists(
-                name=config.REDIS_SHORT_URLS_HASH_NAME,
-                key=slug
-            ),
+            redis.hexists(name=config.REDIS_SHORT_URLS_HASH_NAME, key=slug),
         )
 
     def create(self, short_url_in: ShortUrlCreate) -> ShortUrl:
