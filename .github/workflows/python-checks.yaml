@@ -32,10 +32,14 @@ jobs:
           enable-cache: true
       - name: Install the project
         run: uv sync --locked --all-extras --dev
-      - name: Run ruff
+      - name: Run ruff check --diff
         uses: astral-sh/ruff-action@v3
         with:
           args: 'check --diff'
+          version-file: 'pyproject.toml'
+      - name: Run ruff check
+        uses: astral-sh/ruff-action@v3
+        with:
           version-file: 'pyproject.toml'
       - name: Run mypy
         run: uv run mypy url-shortener
