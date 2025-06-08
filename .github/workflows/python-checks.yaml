@@ -26,7 +26,7 @@ jobs:
       - name: Black ⬛
         run: black --check --diff ./
 
-  list-dependencies:
+  run-mypy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,5 +38,5 @@ jobs:
           enable-cache: true
       - name: Install the project
         run: uv sync --locked --all-extras --dev
-      - name: List dependencies
-        run: uv tree
+      - name: Run mypy
+        run: mypy url-shortener
