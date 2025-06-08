@@ -21,6 +21,7 @@ def main() -> None:
     b = 2
     c = add(a, b)
     print(c)
+    1 + ""
     reveal_type(c)
     print(redis.ping())
     redis.set("name", "Suren")
