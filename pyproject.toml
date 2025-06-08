@@ -171,6 +171,6 @@ unfixable = []
     "S311", # S311 Standard pseudo-random generators are not suitable for cryptographic purposes
 ]
 
-"**/conftest.py" = [
-    "S311", # S311 Standard pseudo-random generators are not suitable for cryptographic purposes
-]
+#"**/conftest.py" = [
+#    "S311", # S311 Standard pseudo-random generators are not suitable for cryptographic purposes
+#]
