@@ -39,4 +39,4 @@ jobs:
       - name: Install the project
         run: uv sync --locked --all-extras --dev
       - name: Run mypy
-        run: mypy url-shortener
+        run: uv run mypy url-shortener
