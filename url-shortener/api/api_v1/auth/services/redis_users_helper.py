@@ -24,7 +24,10 @@ class RedisUsersHelper(AbstractUsersHelper):
         self,
         username: str,
     ) -> str | None:
-        return self.redis.get(username)
+        return cast(
+            str | None,
+            self.redis.get(username),
+        )
 
 
 redis_users = RedisUsersHelper(
