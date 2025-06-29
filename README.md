@@ -8,6 +8,8 @@
 [![Dependency: uv](https://img.shields.io/badge/dependencies-uv-4B8BBE?logo=python&style=for-the-badge)](https://github.com/astral-sh/uv)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-22C55E?style=for-the-badge&logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/mahenzon/fastapi-url-shortener/master.svg)](https://results.pre-commit.ci/latest/github/mahenzon/fastapi-url-shortener/master)
+
 ## Develop
 
 Check GitHub Actions after any push.
