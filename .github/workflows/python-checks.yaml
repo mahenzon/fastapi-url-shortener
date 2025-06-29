@@ -43,3 +43,36 @@ jobs:
           version-file: 'pyproject.toml'
       - name: Run mypy
         run: uv run mypy url-shortener
+  run-tests:
+    runs-on: ubuntu-latest
+    needs:
+      - run-checks
+    services:
+      redis:
+        image: redis
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps port 6379 on service container to the host
+          - 6379:6379
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: '.python-version'
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          pyproject-file: 'pyproject.toml'
+          enable-cache: true
+      - name: Install dependencies
+        run: uv sync --locked --all-extras --dev
+      - name: Run python tests
+        run: uv run pytest
+        env:
+          TESTING: 1
+          REDIS_PORT: 6379
