@@ -43,3 +43,9 @@ jobs:
           version-file: 'pyproject.toml'
       - name: Run mypy
         run: uv run mypy url-shortener
+  run-tests:
+    runs-on: ubuntu-latest
+    needs:
+      - run-checks
+    steps:
+      - run: echo Hello tests!
