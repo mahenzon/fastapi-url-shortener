@@ -18,7 +18,7 @@ Check GitHub Actions after any push.
 Right click `url-shortener` -> Mark Directory as -> Sources Root
 
 
-### Install depencies
+### Install dependencies
 
 Install all packages:
 ```shell
