@@ -81,3 +81,4 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           dry_run: ${{ env.ACT }}
+          fail_ci_if_error: 'true'
