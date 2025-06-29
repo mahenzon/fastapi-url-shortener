@@ -1,0 +1,14 @@
+codecov:
+  require_ci_to_pass: true
+  branch: master
+
+coverage:
+  precision: 2
+  round: down
+  status:
+    project:
+      default:
+        target: 69%
+        threshold: 5%
+
+        if_ci_failed: error
