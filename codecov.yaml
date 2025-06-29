@@ -10,5 +10,12 @@ coverage:
       default:
         target: 69%
         threshold: 5%
-
         if_ci_failed: error
+
+parsers:
+  gcov:
+    branch_detection:
+      conditional: yes
+      loop: yes
+      method: no
+      macro: no

@@ -45,8 +45,8 @@ jobs:
         run: uv run mypy url-shortener
   run-tests:
     runs-on: ubuntu-latest
-    needs:
-      - run-checks
+#    needs:
+#      - run-checks
     services:
       redis:
         image: redis
@@ -80,5 +80,6 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.xml
           dry_run: ${{ env.ACT }}
           fail_ci_if_error: 'true'
