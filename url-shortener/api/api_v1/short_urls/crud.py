@@ -5,7 +5,10 @@ Update
 Delete
 """
 
-__all__ = ("storage",)
+__all__ = (
+    "ShortUrlAlreadyExistsError",
+    "storage",
+)
 
 import logging
 from collections.abc import Iterable

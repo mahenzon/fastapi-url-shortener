@@ -10,7 +10,10 @@ from schemas.short_url import (
     ShortUrlPartialUpdate,
     ShortUrlUpdate,
 )
-from testing.conftest import create_short_url_random_slug
+from testing.conftest import (
+    build_short_url_create_random_slug,
+    create_short_url_random_slug,
+)
 
 
 class ShortUrlsStorageUpdateTestCase(TestCase):
@@ -103,3 +106,16 @@ def test_create_or_raise_if_exists(short_url: ShortUrl) -> None:
         storage.create_or_raise_if_exists(short_url_create)
 
     assert exc_info.value.args[0] == short_url_create.slug
+
+
+def test_create_twice() -> None:
+    short_url_create = build_short_url_create_random_slug()
+    # create new short url successfully
+    storage.create_or_raise_if_exists(short_url_create)
+    # create second time, raises
+    with pytest.raises(
+        ShortUrlAlreadyExistsError,
+        match=short_url_create.slug,
+    ) as exc_info:
+        storage.create_or_raise_if_exists(short_url_create)
+    assert exc_info.value.args == (short_url_create.slug,)
