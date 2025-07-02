@@ -85,6 +85,15 @@ jobs:
             coverage.json
             coverage.xml
           retention-days: 1
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        if: ${{ !github.event.act }}
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.xml
+          dry_run: ${{ env.ACT }}
+          fail_ci_if_error: 'true'
+          slug: 'mahenzon/fastapi-url-shortener'
 
   update-coverage-badge:
     if: github.ref == 'refs/heads/master'
@@ -131,3 +140,4 @@ jobs:
           files: coverage.xml
           dry_run: ${{ env.ACT }}
           fail_ci_if_error: 'true'
+          slug: 'mahenzon/fastapi-url-shortener'
