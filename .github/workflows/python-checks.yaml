@@ -85,17 +85,6 @@ jobs:
             coverage.json
             coverage.xml
           retention-days: 1
-      - name: remove coverage.json
-        run: rm coverage.json
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5
-        if: ${{ !github.event.act }}
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage.xml
-          dry_run: ${{ env.ACT }}
-          fail_ci_if_error: 'true'
-
 
   update-coverage-badge:
     if: github.ref == 'refs/heads/master'
@@ -129,7 +118,6 @@ jobs:
     needs:
       - run-tests
     steps:
-      - uses: actions/checkout@v4
       - name: Download coverage reports
         uses: actions/download-artifact@v4
         with:
