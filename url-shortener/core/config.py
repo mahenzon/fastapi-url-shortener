@@ -2,7 +2,7 @@ import logging
 from pathlib import Path
 
 from pydantic import BaseModel
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +42,10 @@ class RedisConfig(BaseModel):
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        cli_parse_args=True,
+        case_sensitive=False,
+    )
     logging: LoggingConfig = LoggingConfig()
     redis: RedisConfig = RedisConfig()
 
