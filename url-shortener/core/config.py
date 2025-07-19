@@ -11,14 +11,6 @@ LOG_FORMAT: str = (
     "[%(asctime)s.%(msecs)03d] %(module)10s:%(lineno)-3d %(levelname)-7s - %(message)s"
 )
 
-REDIS_DB = 0
-REDIS_DB_TOKENS = 1
-REDIS_DB_USERS = 2
-REDIS_DB_SHORT_URLS = 3
-
-REDIS_TOKENS_SET_NAME = "tokens"
-REDIS_SHORT_URLS_HASH_NAME = "short-urls"
-
 
 class LoggingConfig(BaseModel):
     log_level: int = logging.INFO
@@ -31,8 +23,22 @@ class RedisConnectionConfig(BaseModel):
     port: int = 6379
 
 
+class RedisDatabaseConfig(BaseModel):
+    default: int = 0
+    tokens: int = 1
+    users: int = 2
+    short_urls: int = 3
+
+
+class RedisCollectionsNamesConfig(BaseModel):
+    tokens_set: str = "tokens"
+    short_urls_hash: str = "short-urls"
+
+
 class RedisConfig(BaseModel):
     connection: RedisConnectionConfig = RedisConnectionConfig()
+    db: RedisDatabaseConfig = RedisDatabaseConfig()
+    collections_names: RedisCollectionsNamesConfig = RedisCollectionsNamesConfig()
 
 
 class Settings(BaseSettings):
