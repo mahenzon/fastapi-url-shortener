@@ -1,0 +1,3 @@
+url-shortener:
+  logging:
+    log_level_name: INFO

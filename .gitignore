@@ -179,3 +179,5 @@ cython_debug/
 
 short-urls.json
 .secrets
+
+config.local.yaml
