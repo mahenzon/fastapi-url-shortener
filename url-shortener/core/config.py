@@ -5,7 +5,6 @@ from typing import Literal, Self
 from pydantic import BaseModel, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 LOG_FORMAT: str = (
