@@ -5,7 +5,6 @@ from typing import Literal, Self
 from pydantic import BaseModel, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 LOG_FORMAT: str = (
@@ -44,7 +43,8 @@ class RedisDatabaseConfig(BaseModel):
     def validate_dbs_numbers_unique(self) -> Self:
         db_values = list(self.model_dump().values())
         if len(set(db_values)) != len(db_values):
-            raise ValueError("Database numbers should be unique")
+            msg = "Database numbers should be unique"
+            raise ValueError(msg)
         return self
 
 
