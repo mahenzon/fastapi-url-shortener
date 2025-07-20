@@ -43,7 +43,8 @@ class RedisDatabaseConfig(BaseModel):
     def validate_dbs_numbers_unique(self) -> Self:
         db_values = list(self.model_dump().values())
         if len(set(db_values)) != len(db_values):
-            raise ValueError("Database numbers should be unique")
+            msg = "Database numbers should be unique"
+            raise ValueError(msg)
         return self
 
 
