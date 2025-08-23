@@ -172,6 +172,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
+    { name = "jinja2" },
     { name = "pydantic-settings", extra = ["yaml"] },
     { name = "redis", extra = ["hiredis"] },
     { name = "typer" },
@@ -191,6 +192,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.10" },
+    { name = "jinja2", specifier = ">=3.1.5" },
     { name = "pydantic-settings", extras = ["yaml"], specifier = ">=2.10.1" },
     { name = "redis", extras = ["hiredis"], specifier = ">=5.2.1" },
     { name = "typer", specifier = ">=0.15.2" },
