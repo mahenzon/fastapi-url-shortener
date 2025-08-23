@@ -159,6 +159,7 @@ ignore = [
     "RUF003", # ambiguous-unicode-character-comment (RUF003)
     "TC006", # runtime-cast-value (TC006)
     "B904", # raise-without-from-inside-except (B904)
+    "DTZ011", # call-date-today (DTZ011)
 ]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
