@@ -38,7 +38,17 @@
         </tbody>
       </table>
     </div>
+
+    <div>
+      <a
+        class="btn btn-outline-primary"
+        href="{{ url_for('short-urls:create-view') }}"
+      >
+        Create new
+      </a>
+    </div>
   {% else %}
     <h2>No short URLs yet</h2>
+    <h3>You can <a href="{{ url_for('short-urls:create-view') }}">create a new one</a></h3>
   {% endif %}
 {% endblock %}
