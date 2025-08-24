@@ -20,7 +20,12 @@
         {% for url in short_urls %}
           <tr>
             <td><code>{{ url.slug }}</code></td>
-            <td>{{ url.target_url }}</td>
+            <td>
+              <a
+                target="_blank"
+                href="{{ url.target_url }}"
+              >{{ url.target_url }}</a>
+            </td>
             <td>
               {% if url.description %}
                 {{ url.description }}
