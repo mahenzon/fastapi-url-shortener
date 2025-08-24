@@ -39,6 +39,7 @@ log_cli_level = "INFO"
 console_output_style = "progress"
 markers = [
     "apitest: test any http api call",
+    "tempaltetest: test any http HTML template page",
 ]
 xfail_strict = true
 
