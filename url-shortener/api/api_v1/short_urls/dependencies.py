@@ -18,8 +18,8 @@ from api.api_v1.auth.services import (
     redis_tokens,
     redis_users,
 )
+from dependencies.short_urls import GetShortUrlsStorage
 from schemas.short_url import ShortUrl
-from storage.short_urls.crud import storage
 
 log = logging.getLogger(__name__)
 
@@ -47,6 +47,7 @@ user_basic_auth = HTTPBasic(
 
 def prefetch_short_url(
     slug: str,
+    storage: GetShortUrlsStorage,
 ) -> ShortUrl:
     url: ShortUrl | None = storage.get_by_slug(slug=slug)
     if url:
