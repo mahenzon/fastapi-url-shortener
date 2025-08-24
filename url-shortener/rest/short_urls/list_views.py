@@ -3,6 +3,7 @@ from typing import Any
 from fastapi import APIRouter, Request
 from starlette.responses import HTMLResponse
 
+from dependencies.short_urls import GetShortUrlsStorage
 from templating import templates
 
 router = APIRouter()
@@ -15,9 +16,10 @@ router = APIRouter()
 )
 def list_view(
     request: Request,
+    storage: GetShortUrlsStorage,
 ) -> HTMLResponse:
     context: dict[str, Any] = {}
-    short_urls = []
+    short_urls = storage.get()
     context.update(
         short_urls=short_urls,
     )

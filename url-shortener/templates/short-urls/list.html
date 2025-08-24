@@ -1,14 +1,39 @@
 {% extends 'base.html' %}
 
 {% block title %}
-	All Short URLs
+  All Short URLs
 {% endblock %}
 
 {% block main %}
-	<h1>Short URLs list</h1>
+  <h1>Short URLs list</h1>
   {% if short_urls %}
-  	{{ short_urls }}
+    <div class="table-responsive">
+      <table class="table table-striped table-hover align-middle">
+        <thead>
+        <tr>
+          <th scope="col">slug</th>
+          <th scope="col">Target URL</th>
+          <th scope="col">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for url in short_urls %}
+          <tr>
+            <td><code>{{ url.slug }}</code></td>
+            <td>{{ url.target_url }}</td>
+            <td>
+              {% if url.description %}
+                {{ url.description }}
+              {% else %}
+                <code>-</code>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
   {% else %}
-  	<h2>No short URLs yet</h2>
+    <h2>No short URLs yet</h2>
   {% endif %}
 {% endblock %}
