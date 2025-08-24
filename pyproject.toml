@@ -169,6 +169,9 @@ fixable = ["ALL"]
 unfixable = []
 
 [tool.ruff.lint.extend-per-file-ignores]
+"**/__init__.py" = [
+    "PLC0414", # useless-import-alias (PLC0414)
+]
 "stuff.py" = [
     "T20", # flake8-print (T20)
 ]
