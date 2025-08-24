@@ -19,8 +19,7 @@ from api.api_v1.auth.services import (
     redis_users,
 )
 from schemas.short_url import ShortUrl
-
-from .crud import storage
+from storage.short_urls.crud import storage
 
 log = logging.getLogger(__name__)
 

@@ -6,9 +6,9 @@ from fastapi import status
 from fastapi.testclient import TestClient
 from pydantic import AnyHttpUrl
 
-from api.api_v1.short_urls.crud import storage
 from main import app
 from schemas.short_url import DESCRIPTION_MAX_LENGTH, ShortUrl, ShortUrlUpdate
+from storage.short_urls.crud import storage
 from testing.conftest import create_short_url_random_slug
 
 

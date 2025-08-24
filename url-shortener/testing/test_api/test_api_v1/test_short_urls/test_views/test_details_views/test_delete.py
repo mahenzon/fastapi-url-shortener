@@ -3,9 +3,9 @@ from _pytest.fixtures import SubRequest
 from fastapi import status
 from fastapi.testclient import TestClient
 
-from api.api_v1.short_urls.crud import storage
 from main import app
 from schemas.short_url import ShortUrl
+from storage.short_urls.crud import storage
 from testing.conftest import create_short_url
 
 
