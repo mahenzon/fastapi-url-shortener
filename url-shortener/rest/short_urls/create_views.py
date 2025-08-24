@@ -1,8 +1,9 @@
 from typing import Annotated, Any
 
-from fastapi import APIRouter, Form, Request
-from starlette.responses import HTMLResponse
+from fastapi import APIRouter, Form, Request, status
+from starlette.responses import HTMLResponse, RedirectResponse
 
+from dependencies.short_urls import GetShortUrlsStorage
 from schemas.short_url import ShortUrlCreate
 from templating import templates
 
@@ -35,9 +36,17 @@ def get_page_create_short_url(
     name="short-urls:create",
 )
 def create_short_url(
+    request: Request,
     short_url_create: Annotated[
         ShortUrlCreate,
         Form(),
     ],
-) -> dict[str, str]:
-    return short_url_create.model_dump(mode="json")
+    storage: GetShortUrlsStorage,
+) -> RedirectResponse:
+    storage.create_or_raise_if_exists(
+        short_url_create,
+    )
+    return RedirectResponse(
+        url=request.url_for("short-urls:list"),
+        status_code=status.HTTP_303_SEE_OTHER,
+    )
