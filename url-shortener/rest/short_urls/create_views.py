@@ -37,7 +37,7 @@ def get_page_create_short_url(
 def format_pydantic_errors(
     error: ValidationError,
 ) -> dict[str, str]:
-    return {err["loc"][0]: err["msg"] for err in error.errors()}
+    return {f"{err["loc"][0]}": err["msg"] for err in error.errors()}
 
 
 def create_view_validation_response(
