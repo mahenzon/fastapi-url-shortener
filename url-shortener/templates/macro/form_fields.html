@@ -1,9 +1,11 @@
 {% macro form_field(
   field_name,
   field_schema,
-  default=None,
+  value=None,
+  validated=False,
+  error=None,
   is_required=False) %}
-  <div class="mb-3">
+  <div class="mb-3 {% if validated %}has-validation{% endif %} ">
     <label
       for="{{ field_name }}"
       class="form-label"
@@ -12,17 +14,28 @@
       id="{{ field_name }}"
       name="{{ field_name }}"
       type="text"
+      {% if validated %}
+      class="form-control {% if error %}is-invalid{% else %}is-valid{% endif %}"
+      {% else %}
       class="form-control"
+      {% endif %}
       {% if field_schema.get('minLength') != None %}
       minlength="{{ field_schema.minLength }}"
       {% endif %}
       {% if field_schema.get('maxLength') != None %}
       maxlength="{{ field_schema.maxLength }}"
       {% endif %}
-      {% if default != None %}
-      	value="{{ default }}"
+      {% if value != None %}
+      value="{{ value }}"
       {% endif %}
       {% if is_required %}required{% endif %}
     >
+    {% if validated %}
+      {% if error %}
+        <div class="invalid-feedback">
+          {{ error }}
+        </div>
+      {% endif %}
+    {% endif %}
   </div>
 {% endmacro %}

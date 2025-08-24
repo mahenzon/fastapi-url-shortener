@@ -16,7 +16,9 @@
           {{ form_field(
                field_name=field_name,
                field_schema=field_schema,
-               default=field_schema.default,
+               value=form_data and form_data[field_name] or field_schema.default,
+               validated=form_validated,
+               error=errors and errors[field_name] or None,
                is_required=is_required) }}
         {% endfor %}
 
