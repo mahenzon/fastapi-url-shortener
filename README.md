@@ -48,6 +48,29 @@ Run dev server:
 fastapi dev
 ```
 
+## Manage
+
+Tokens cli
+
+```shell
+# Linux / macOS
+./manage.py --help
+
+# on windows
+manage.bat --help
+
+# or universal
+uv run manage.py --help
+```
+
+## Test
+
+Run pytest tests
+
+```shell
+uv run pytest url-shortener
+```
+
 ## Snippets
 
 ```shell
