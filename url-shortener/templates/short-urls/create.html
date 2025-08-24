@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Create new Short URL
+{% endblock %}
+
+{% block main %}
+  <h1>Create a new Short URL</h1>
+
+  <div class="row">
+    <div class="col col-12 col-md-6 col-lg-4">
+      <form action="{{ url_for('short-urls:create') }}" method="post">
+        {% for field_name, field_schema in model_schema.properties.items() %}
+          {% set is_required = field_name in (model_schema.get('required') or []) %}
+
+          <div class="mb-3">
+            <label
+              for="{{ field_name }}"
+              class="form-label"
+            >{{ field_schema.title }}</label>
+            <input
+              id="{{ field_name }}"
+              name="{{ field_name }}"
+              type="text"
+              class="form-control"
+              {% if field_schema.get('minLength') != None %}
+              	minlength="{{ field_schema.minLength }}"
+              {% endif %}
+              {% if field_schema.get('maxLength') != None %}
+              	maxlength="{{ field_schema.maxLength }}"
+              {% endif %}
+              {% if is_required %}required{% endif %}
+            >
+          </div>
+        {% endfor %}
+
+        <input type="submit" value="Create" class="btn btn-primary">
+      </form>
+    </div>
+  </div>
+{% endblock %}
