@@ -5,9 +5,10 @@ description = "FastAPI URL Shortener"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "fastapi[standard]>=0.115.10",
+    "fastapi[standard]>=0.116.1",
     "jinja2>=3.1.5",
     "pydantic-settings[yaml]>=2.10.1",
+    "python-multipart>=0.0.20",
     "redis[hiredis]>=5.2.1",
     "typer>=0.15.2",
 ]
