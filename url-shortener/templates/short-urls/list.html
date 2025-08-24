@@ -5,5 +5,10 @@
 {% endblock %}
 
 {% block main %}
-	<h1>Short URLS list</h1>
+	<h1>Short URLs list</h1>
+  {% if short_urls %}
+  	{{ short_urls }}
+  {% else %}
+  	<h2>No short URLs yet</h2>
+  {% endif %}
 {% endblock %}
