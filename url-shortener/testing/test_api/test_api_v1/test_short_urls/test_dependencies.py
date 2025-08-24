@@ -1,4 +1,4 @@
-from api.api_v1.short_urls.dependencies import UNSAFE_METHODS
+from dependencies.auth import UNSAFE_METHODS
 
 
 class TestUnsafeMethods:

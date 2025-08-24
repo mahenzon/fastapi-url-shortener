@@ -3,8 +3,8 @@ from collections.abc import Generator
 import pytest
 from fastapi.testclient import TestClient
 
-from api.api_v1.auth.services import redis_tokens
 from main import app
+from services.auth import redis_tokens
 
 
 @pytest.fixture()
