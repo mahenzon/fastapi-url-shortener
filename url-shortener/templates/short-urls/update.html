@@ -3,11 +3,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Update Short URL
+  Update Short URL {{ short_url.slug }}
 {% endblock %}
 
 {% block main %}
-  <h1>Update Short URL</h1>
+  <h1>Update Short URL <code>{{ short_url.slug }}</code></h1>
 
   {{ render_form(
     action='',
