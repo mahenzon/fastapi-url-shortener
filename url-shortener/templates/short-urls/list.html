@@ -14,6 +14,7 @@
           <th scope="col">slug</th>
           <th scope="col">Target URL</th>
           <th scope="col">Description</th>
+          <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -32,6 +33,22 @@
               {% else %}
                 <code>-</code>
               {% endif %}
+            </td>
+            <td>
+              <div
+                class="btn-group"
+                role="group"
+                aria-label="Short URL actions"
+              >
+                <a
+                  href="#"
+                  class="btn btn-outline-info"
+                >Edit</a>
+                <a
+                  href="#"
+                  class="btn btn-outline-danger disabled"
+                >Delete</a>
+              </div>
             </td>
           </tr>
         {% endfor %}
