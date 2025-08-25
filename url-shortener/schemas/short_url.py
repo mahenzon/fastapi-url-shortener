@@ -35,6 +35,14 @@ class ShortUrlUpdate(ShortUrlBase):
     """
 
 
+class ShortUrlUpdateForm(ShortUrlBase):
+    """
+    Модель для обновления информации о сокращенной ссылке в форме
+    """
+
+    description: DescriptionString = ""
+
+
 class ShortUrlPartialUpdate(BaseModel):
     """
     Модель для частичного обновления информации

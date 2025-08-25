@@ -1,8 +1,21 @@
-from fastapi import APIRouter, Request
-from starlette.responses import HTMLResponse
+from typing import Annotated
 
-from dependencies.short_urls import ShortUrlBySlug
-from schemas.short_url import ShortUrlUpdate
+from fastapi import (
+    APIRouter,
+    Form,
+    Request,
+    status,
+)
+from starlette.responses import (
+    HTMLResponse,
+    RedirectResponse,
+)
+
+from dependencies.short_urls import (
+    GetShortUrlsStorage,
+    ShortUrlBySlug,
+)
+from schemas.short_url import ShortUrlUpdateForm
 from services.short_urls import FormResponseHelper
 
 router = APIRouter(
@@ -10,7 +23,7 @@ router = APIRouter(
 )
 
 form_response = FormResponseHelper(
-    model=ShortUrlUpdate,
+    model=ShortUrlUpdateForm,
     template_name="short-urls/update.html",
 )
 
@@ -23,9 +36,32 @@ def get_page_update_short_url(
     request: Request,
     short_url: ShortUrlBySlug,
 ) -> HTMLResponse:
-    form = ShortUrlUpdate(**short_url.model_dump())
+    form = ShortUrlUpdateForm(**short_url.model_dump())
     return form_response.render(
         request=request,
         form_data=form,
         short_url=short_url,
+    )
+
+
+@router.post(
+    "/",
+    name="short-urls:update",
+)
+def update_short_url(
+    request: Request,
+    short_url: ShortUrlBySlug,
+    short_url_in: Annotated[
+        ShortUrlUpdateForm,
+        Form(),
+    ],
+    storage: GetShortUrlsStorage,
+) -> RedirectResponse:
+    storage.update(
+        short_url=short_url,
+        short_url_in=short_url_in,
+    )
+    return RedirectResponse(
+        url=request.url_for("short-urls:list"),
+        status_code=status.HTTP_303_SEE_OTHER,
     )

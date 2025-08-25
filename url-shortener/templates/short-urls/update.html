@@ -10,7 +10,7 @@
   <h1>Update Short URL <code>{{ short_url.slug }}</code></h1>
 
   {{ render_form(
-    action='',
+    action=url_for('short-urls:update', slug=short_url.slug),
     button_text='Update') }}
 
   {% include 'short-urls/components/back-to-list.html' %}
