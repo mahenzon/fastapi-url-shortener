@@ -1,0 +1,17 @@
+{% from 'short-urls/macro/form.html' import render_form with context %}
+
+{% extends 'base.html' %}
+
+{% block title %}
+  Update Short URL
+{% endblock %}
+
+{% block main %}
+  <h1>Update Short URL</h1>
+
+  {{ render_form(
+    action='',
+    button_text='Update') }}
+
+  {% include 'short-urls/components/back-to-list.html' %}
+{% endblock %}

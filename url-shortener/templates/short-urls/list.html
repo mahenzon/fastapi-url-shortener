@@ -41,7 +41,7 @@
                 aria-label="Short URL actions"
               >
                 <a
-                  href="#"
+                  href="{{ url_for('short-urls:update-view', slug=url.slug) }}"
                   class="btn btn-outline-info"
                 >Edit</a>
                 <a
