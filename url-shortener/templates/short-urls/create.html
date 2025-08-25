@@ -1,4 +1,5 @@
-{% from 'macro/form_fields.html' import form_field %}
+{% from 'short-urls/macro/form.html' import render_form with context %}
+
 {% extends 'base.html' %}
 
 {% block title %}
@@ -8,30 +9,9 @@
 {% block main %}
   <h1>Create a new Short URL</h1>
 
-  <div class="row">
-    <div class="col col-12 col-md-6 col-lg-4">
-      <form action="{{ url_for('short-urls:create') }}" method="post">
-        {% for field_name, field_schema in model_schema.properties.items() %}
-          {% set is_required = field_name in (model_schema.get('required') or []) %}
-          {{ form_field(
-               field_name=field_name,
-               field_schema=field_schema,
-               value=form_data and form_data[field_name] or field_schema.default,
-               validated=form_validated,
-               error=errors and errors[field_name] or None,
-               is_required=is_required) }}
-        {% endfor %}
+  {{ render_form(
+    action=url_for('short-urls:create'),
+    button_text='Create') }}
 
-        <input type="submit" value="Create" class="btn btn-primary">
-      </form>
-    </div>
-  </div>
-  <div class="mt-5">
-    <a
-      class="btn btn-secondary"
-      href="{{ url_for('short-urls:list') }}"
-    >
-      Back to Short URLs list
-    </a>
-  </div>
+  {% include 'short-urls/components/back-to-list.html' %}
 {% endblock %}
