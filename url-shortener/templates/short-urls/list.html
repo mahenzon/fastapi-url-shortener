@@ -44,11 +44,60 @@
                   href="{{ url_for('short-urls:update-view', slug=url.slug) }}"
                   class="btn btn-outline-info"
                 >Edit</a>
-                <a
-                  href="#"
-                  class="btn btn-outline-danger disabled"
-                >Delete</a>
+
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal-confirm-delete-{{ url.slug }}"
+                >
+                  Delete
+                </button>
               </div>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="modal-confirm-delete-{{ url.slug }}"
+                tabindex="-1"
+                aria-labelledby="modal-confirm-delete-{{ url.slug }}-label"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1
+                        class="modal-title fs-5"
+                        id="modal-confirm-delete-{{ url.slug }}-label"
+                      >Confirm delete Short URL <code>{{ url.slug }}</code></h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to delete Short URL
+                      <code>{{ url.slug }}</code> that links to
+                      <a href="{{ url.target_url }}">{{ url.target_url }}</a>?
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >Close
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                      >Permanently delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </td>
           </tr>
         {% endfor %}
