@@ -1,5 +1,4 @@
-from fastapi import APIRouter, Request, status
-from starlette.responses import RedirectResponse
+from fastapi import APIRouter, Response, status
 
 from dependencies.short_urls import (
     GetShortUrlsStorage,
@@ -11,17 +10,16 @@ router = APIRouter(
 )
 
 
-@router.post(
+@router.delete(
     "/",
     name="short-urls:delete",
 )
 async def delete_short_url(
-    request: Request,
     short_url: ShortUrlBySlug,
     storage: GetShortUrlsStorage,
-) -> RedirectResponse:
+) -> Response:
     storage.delete(short_url)
-    return RedirectResponse(
-        url=request.url_for("short-urls:list"),
-        status_code=status.HTTP_303_SEE_OTHER,
+    return Response(
+        status_code=status.HTTP_200_OK,
+        content="",
     )

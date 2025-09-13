@@ -88,16 +88,17 @@
                         data-bs-dismiss="modal"
                       >Close
                       </button>
-                      <form
-                        action="{{ url_for('short-urls:delete', slug=url.slug) }}"
-                        method="post"
-                      >
-                        <button
-                          type="submit"
-                          class="btn btn-danger"
-                        >Permanently delete
-                        </button>
-                      </form>
+
+                      <button
+                        hx-delete="{{ url_for('short-urls:delete', slug=url.slug) }}"
+                        hx-target="closest tr"
+                        hx-swap="outerHTML swap:0.5s"
+                        type="submit"
+                        class="btn btn-danger"
+                        data-bs-dismiss="modal"
+                      >Permanently delete
+                      </button>
+
                     </div>
                   </div>
                 </div>
@@ -122,4 +123,16 @@
     <h2>No short URLs yet</h2>
     <h3>You can <a href="{{ url_for('short-urls:create-view') }}">create a new one</a></h3>
   {% endif %}
+
+  <style>
+    tr.htmx-swapping td {
+      opacity: 0;
+      transition: opacity 0.5s ease-out;
+    }
+  </style>
+  <script
+    src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js"
+    integrity="sha384-ZBXiYtYQ6hJ2Y0ZNoYuI+Nq5MqWBr+chMrS/RkXpNzQCApHEhOt2aY8EJgqwHLkJ"
+    crossorigin="anonymous"></script>
+
 {% endblock %}
