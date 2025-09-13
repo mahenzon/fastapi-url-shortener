@@ -88,11 +88,16 @@
                         data-bs-dismiss="modal"
                       >Close
                       </button>
-                      <button
-                        type="button"
-                        class="btn btn-danger"
-                      >Permanently delete
-                      </button>
+                      <form
+                        action="{{ url_for('short-urls:delete', slug=url.slug) }}"
+                        method="post"
+                      >
+                        <button
+                          type="submit"
+                          class="btn btn-danger"
+                        >Permanently delete
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>
