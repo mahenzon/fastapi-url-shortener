@@ -3,6 +3,7 @@ from pydantic import ValidationError
 from starlette.responses import HTMLResponse, RedirectResponse
 
 from dependencies.short_urls import GetShortUrlsStorage
+from misc.flash_messages import flash
 from schemas.short_url import ShortUrlCreate
 from services.short_urls import FormResponseHelper
 from storage.short_urls.exceptions import ShortUrlAlreadyExistsError
@@ -56,8 +57,10 @@ async def create_short_url(
             "slug": f"Short url with slug {short_url_create.slug!r} already exists.",
         }
     else:
-        request.session["message"] = (
-            f"Last created short url with slug {short_url_create.slug!r}."
+        flash(
+            request=request,
+            message=f"Successfully created short url {short_url_create.slug}.",
+            category="success",
         )
         return RedirectResponse(
             url=request.url_for("short-urls:list"),
