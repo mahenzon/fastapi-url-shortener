@@ -56,6 +56,9 @@ async def create_short_url(
             "slug": f"Short url with slug {short_url_create.slug!r} already exists.",
         }
     else:
+        request.session["message"] = (
+            f"Last created short url with slug {short_url_create.slug!r}."
+        )
         return RedirectResponse(
             url=request.url_for("short-urls:list"),
             status_code=status.HTTP_303_SEE_OTHER,

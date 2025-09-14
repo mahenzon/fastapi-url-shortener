@@ -6,6 +6,11 @@
 
 {% block main %}
   <h1>Short URLs list</h1>
+  {% if request.session.get("message") %}
+    <div class="alert alert-info">
+      {{ request.session.pop("message") }}
+    </div>
+  {% endif %}
   {% if short_urls %}
     <div class="table-responsive">
       <table class="table table-striped table-hover align-middle">
