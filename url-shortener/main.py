@@ -3,6 +3,7 @@ import logging
 from fastapi import (
     FastAPI,
 )
+from starlette.middleware.sessions import SessionMiddleware
 
 from api import router as api_router
 from api.redirect_views import router as redirect_views
@@ -19,6 +20,11 @@ logging.basicConfig(
 app = FastAPI(
     title="URL Shortener",
     lifespan=lifespan,
+)
+
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=settings.session.secret_key,
 )
 
 app.include_router(rest_router)
