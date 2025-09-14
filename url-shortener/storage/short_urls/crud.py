@@ -23,6 +23,7 @@ from schemas.short_url import (
     ShortUrlCreate,
     ShortUrlPartialUpdate,
     ShortUrlUpdate,
+    ShortUrlUpdateForm,
 )
 from storage.short_urls.exceptions import ShortUrlAlreadyExistsError
 
@@ -100,7 +101,7 @@ class ShortUrlsStorage(BaseModel):
     def update(
         self,
         short_url: ShortUrl,
-        short_url_in: ShortUrlUpdate,
+        short_url_in: ShortUrlUpdate | ShortUrlUpdateForm,
     ) -> ShortUrl:
         for field_name, value in short_url_in:
             setattr(short_url, field_name, value)
