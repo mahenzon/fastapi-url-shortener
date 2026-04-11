@@ -26,8 +26,5 @@ def prefetch_short_url(
 def save_storage_state(
     background_tasks: BackgroundTasks,
 ):
-    # сначала код для выполнения до входа внутрь view функции
-    yield
-    # после yield код для выполнения после покидания view функции
     log.info("Add background task to save storage")
     background_tasks.add_task(storage.save_state)
